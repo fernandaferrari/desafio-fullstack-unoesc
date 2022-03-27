@@ -1,14 +1,27 @@
 package br.edu.unoesc.desafiofullstackunoesc.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "municipio")
 public class Municipio {
-    protected long codigo;
-    protected long codigoIBGE;
-    protected String nomeIBGE;
-    protected String codigoRegiao;
-    protected String pais;
-    protected UnidadeFederativa unidadeFederativa;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long codigo;
+
+    private long codigoIBGE;
+    private String nomeIBGE;
+    private String codigoRegiao;
+    private String pais;
+
+    @ManyToOne
+    @JoinColumn(name = "unidadefederativa_codigo", referencedColumnName = "codigo")
+    private UnidadeFederativa unidadeFederativa;
     
-    public Municipio(long codigo, long codigoIBGE, String nomeIBGE, String codigoRegiao, String pais,
+    public Municipio(
+            long codigo, 
+            long codigoIBGE, String nomeIBGE, String codigoRegiao, String pais,
             UnidadeFederativa unidadeFederativa) {
         this.codigo = codigo;
         this.codigoIBGE = codigoIBGE;

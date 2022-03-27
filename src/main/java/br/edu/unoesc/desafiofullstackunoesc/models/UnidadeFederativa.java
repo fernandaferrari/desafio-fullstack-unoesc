@@ -1,11 +1,19 @@
 package br.edu.unoesc.desafiofullstackunoesc.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "unidadefederativa")
 public class UnidadeFederativa {
-    protected long codigo;
-    protected String sigla;
-    protected String nome;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long codigo;
+
+    private String sigla;
+    private String nome;
     
-    public UnidadeFederativa(long codigo, String sigla, String nome) {
+    public UnidadeFederativa(int codigo, String sigla, String nome) {
         this.codigo = codigo;
         this.sigla = sigla;
         this.nome = nome;
