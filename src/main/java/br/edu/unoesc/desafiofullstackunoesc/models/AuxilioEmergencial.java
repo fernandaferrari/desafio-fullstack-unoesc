@@ -1,6 +1,6 @@
 package br.edu.unoesc.desafiofullstackunoesc.models;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -11,6 +11,7 @@ public class AuxilioEmergencial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long codigo;
 
     @Column(nullable = false)
@@ -18,15 +19,15 @@ public class AuxilioEmergencial {
     @Column(nullable = false)
     private String numeroParcela;
     @Column(nullable = false)
-    private DecimalFormat valorTotal;
+    private BigDecimal valorTotal;
     
     @ManyToOne
-    @JoinColumn(name = "municipio_codigo", referencedColumnName = "codigo", nullable = false)
+    @JoinColumn(name = "municipio_id", referencedColumnName = "id", nullable = false)
     private Municipio municipio;
 
     public AuxilioEmergencial(
             int codigo, Date dataConsulta, Municipio municipio, String numeroParcela,
-            DecimalFormat valorTotal) {
+            BigDecimal valorTotal) {
         this.codigo = codigo;
         this.dataConsulta = dataConsulta;
         this.municipio = municipio;
@@ -66,11 +67,11 @@ public class AuxilioEmergencial {
         this.numeroParcela = numeroParcela;
     }
 
-    public DecimalFormat getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(DecimalFormat valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 

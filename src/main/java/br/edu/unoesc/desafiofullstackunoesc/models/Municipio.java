@@ -8,6 +8,7 @@ public class Municipio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long codigo;
 
     @Column(nullable = false)
@@ -20,7 +21,7 @@ public class Municipio {
     private String pais;
 
     @ManyToOne
-    @JoinColumn(name = "unidadefederativa_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "unidadefederativa_id", referencedColumnName = "id")
     private UnidadeFederativa unidadeFederativa;
     
     public Municipio(
