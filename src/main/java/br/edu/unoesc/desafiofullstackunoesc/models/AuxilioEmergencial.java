@@ -13,12 +13,15 @@ public class AuxilioEmergencial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
 
+    @Column(nullable = false)
     private Date dataConsulta;
+    @Column(nullable = false)
     private String numeroParcela;
+    @Column(nullable = false)
     private DecimalFormat valorTotal;
     
     @ManyToOne
-    @JoinColumn(name = "municipio_codigo", referencedColumnName = "codigo")
+    @JoinColumn(name = "municipio_codigo", referencedColumnName = "codigo", nullable = false)
     private Municipio municipio;
 
     public AuxilioEmergencial(

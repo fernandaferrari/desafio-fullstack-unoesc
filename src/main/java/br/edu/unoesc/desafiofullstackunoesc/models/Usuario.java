@@ -10,8 +10,11 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
     
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String confirmPassword;
     
     public Usuario(long codigo, String nome, String password, String confirmPassword) {

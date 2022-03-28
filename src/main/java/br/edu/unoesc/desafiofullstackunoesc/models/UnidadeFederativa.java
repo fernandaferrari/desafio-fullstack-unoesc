@@ -10,7 +10,9 @@ public class UnidadeFederativa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
 
+    @Column(nullable = false)
     private String sigla;
+    @Column(nullable = false)
     private String nome;
     
     public UnidadeFederativa(int codigo, String sigla, String nome) {

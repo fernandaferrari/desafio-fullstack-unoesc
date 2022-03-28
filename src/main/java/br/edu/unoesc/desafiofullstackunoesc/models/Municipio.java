@@ -10,9 +10,13 @@ public class Municipio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
 
+    @Column(nullable = false)
     private long codigoIBGE;
+    @Column(length = 100, nullable = false)
     private String nomeIBGE;
+    @Column(length = 50, nullable = false)
     private String codigoRegiao;
+    @Column(nullable = false)
     private String pais;
 
     @ManyToOne
