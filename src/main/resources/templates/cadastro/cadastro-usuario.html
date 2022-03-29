@@ -32,25 +32,22 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" th:action="@{/cadastro}" th:object="${cadastro}" method="post">
+                <form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action="/cadastrar" method="post">
                     <span class="login100-form-title">
                         Cadastro
                     </span>
 
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="username">
-                        <input class="input100" type="text" th:field="*{nome}" name="username" placeholder="Digite nome do usuário" required="required">
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="nome">
+                        <input class="input100" type="text" name="nome" placeholder="Digite nome do usuário" required="required">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate="password">
-                        <input class="input100" type="password" th:field="*{password}" name="pass" placeholder="Digite uma senha" required="required">
+                        <input class="input100" type="password" name="password" placeholder="Digite uma senha" required="required">
                         <span class="focus-input100"></span>
                     </div>
-<!-- 
-                    <div class="wrap-input100 validate-input " data-validate="passConfirm">
-                        <input class="input100" type="password"  name="passConfirm" placeholder="Confirme a senha", required="required">
-                        <span class="focus-input100"></span>
-                    </div> -->
+
+                    <div th:if="${erro != null}" th:text="${erro}" class="alert alert-primary" role="alert"></div>
 
                     <div class="container-login100-form-btn p-t-20 m-b-16">
                         <button class="login100-form-btn">

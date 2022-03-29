@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.unoesc.desafiofullstackunoesc.models.Usuario;
@@ -18,18 +17,26 @@ public class CadastroController {
     UsuarioService userService;
     
     @GetMapping("/cadastro")
-    public String cadastro(Model model) {
-        model.addAttribute("cadastro", new Usuario());
+    public String cadastro() {
 
         return "cadastro/cadastro-usuario";
     }
 
-    @PostMapping("/cadastro")
-    public String salvarUser(@ModelAttribute Usuario usuario) {
+    @PostMapping("/cadastrar")
+    public String salvarUser(Model model, String nome, String password) {
 
-        userService.salvar(usuario);
+        Usuario usuario = new Usuario();
+        usuario.setNome(nome);
+        usuario.setPassword(password);
 
-        return "login/index";
+        Boolean result = userService.salvar(usuario);
+
+        if(result == true){
+            return "redirect:/home";
+        }
+
+        model.addAttribute("erro", "Usuário já cadastrado");
+        return "cadastro/cadastro-usuario";
     }
 
 

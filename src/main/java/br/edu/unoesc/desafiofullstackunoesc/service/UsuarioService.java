@@ -17,11 +17,16 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository repository;
 
-    public Usuario salvar(Usuario usuario){
+    public Boolean salvar(Usuario usuario){
+        try{
+            usuario.setPassword(criptografarSenha(usuario.getPassword()));
 
-        usuario.setPassword(criptografarSenha(usuario.getPassword()));
-
-        return repository.save(usuario);
+            repository.save(usuario);
+        }catch (Exception e){
+            return false;
+        }
+        
+        return true;
     }
 
     public static String criptografarSenha(String senha){

@@ -3,42 +3,22 @@ package br.edu.unoesc.desafiofullstackunoesc.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import br.edu.unoesc.desafiofullstackunoesc.models.FormBuscaAuxilio;
-
-
 
 @Controller
 public class HomeController {
 
     @GetMapping("/home")
-    public String index(Model model) {
-        model.addAttribute("home", new FormBuscaAuxilio());
+    public String index() {
         return "home/buscar-auxilio";
     }
 
-    @PostMapping("/home")
-    public String salvarUser(@ModelAttribute FormBuscaAuxilio buscar) {
+    @PostMapping("/buscar-auxilio")
+    public String salvarUser(Model model, String codigoIbge, int mesAno) {
 
-        System.out.println(buscar);
+        System.out.println(codigoIbge);
+        System.out.println(mesAno);
         return "home/buscar-auxilio";
     }
-
-
-    // @GetMapping("/home")
-    // public String index(Model model) {
-    //     model.addAttribute("buscar", new Object());
-
-    //     return "home/home";
-    // }
-
-    // @PostMapping("/home")
-    // public String salvarUser(@ModelAttribute Object buscar) {
-
-    //     System.out.println(buscar);
-    //     return "home/home";
-    // }
 
 }
