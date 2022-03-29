@@ -38,12 +38,12 @@
                     </span>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate="ibge">
-                        <input class="input100" type="text" name="codigoIbge" placeholder="Nº IBGE">
+                        <input class="input100" type="text" name="codigoIbge" placeholder="Nº IBGE"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="anoMes">
-                        <input class="input100" type="int" name="anoMes" placeholder="Informe a data">
+                        <input class="input100" type="number" name="anoMes" placeholder="Informe a data">
                         <span class="focus-input100"></span>
                     </div>
 
