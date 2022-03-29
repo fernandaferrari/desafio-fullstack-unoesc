@@ -29,7 +29,7 @@ public class CadastroController {
 
         userService.salvar(usuario);
 
-        return "/home/home";
+        return "login/index";
     }
 
 

@@ -38,4 +38,14 @@ public class UsuarioService {
 
         return senhaCripto;
     }
+
+
+    public Usuario checkAccount(Usuario usuario) {
+        usuario.setPassword(criptografarSenha(usuario.getPassword()));
+
+        Usuario user = this.repository.login(usuario.getNome(), usuario.getPassword());
+
+        return user;
+
+    }
 }
