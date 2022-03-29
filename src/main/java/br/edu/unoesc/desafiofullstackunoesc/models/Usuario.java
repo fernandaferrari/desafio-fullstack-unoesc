@@ -15,12 +15,6 @@ public class Usuario {
     private String nome;
     @Column(nullable = false)
     private String password;
-    
-    public Usuario(long codigo, String nome, String password) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.password = password;
-    }
 
     public long getCodigo() {
         return codigo;
