@@ -11,18 +11,15 @@ public class Usuario {
     @Column(name = "id")
     private long codigo;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private String confirmPassword;
     
-    public Usuario(long codigo, String nome, String password, String confirmPassword) {
+    public Usuario(long codigo, String nome, String password) {
         this.codigo = codigo;
         this.nome = nome;
         this.password = password;
-        this.confirmPassword = confirmPassword;
     }
 
     public long getCodigo() {
@@ -47,13 +44,5 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 }
