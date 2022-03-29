@@ -25,15 +25,6 @@ public class AuxilioEmergencial {
     @JoinColumn(name = "municipio_id", referencedColumnName = "id", nullable = false)
     private Municipio municipio;
 
-    public AuxilioEmergencial(
-            int codigo, Date dataConsulta, Municipio municipio, String numeroParcela,
-            BigDecimal valorTotal) {
-        this.codigo = codigo;
-        this.dataConsulta = dataConsulta;
-        this.municipio = municipio;
-        this.numeroParcela = numeroParcela;
-        this.valorTotal = valorTotal;
-    }
 
     public long getCodigo() {
         return codigo;

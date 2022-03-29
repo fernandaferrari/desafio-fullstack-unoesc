@@ -25,12 +25,11 @@ public class CadastroController {
     }
 
     @PostMapping("/cadastro")
-    public String salvarUser(@ModelAttribute Usuario usuario, Model model) {
+    public String salvarUser(@ModelAttribute Usuario usuario) {
 
-        //model.addAttribute("cadastro", usuario);
         userService.salvar(usuario);
 
-        return "login/index";
+        return "/home/home";
     }
 
 
