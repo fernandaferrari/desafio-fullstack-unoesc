@@ -176,7 +176,7 @@ iframe {
   align-items: center;
   padding: 15px;
   position: relative;
-  background-color: #fff;
+  background-color: rgb(172, 172, 172);
 }
 
 .wrap-login100 {
@@ -294,12 +294,13 @@ iframe {
   transform: translate(800%, 0%);
   left: 100%;
   justify-content: center;
-}
-
-#esquerda {
-  position: absolute;
-  left: 80%;
-  transform: translate(-50%, -50%);
+  background-color: #57b846;
+  border-radius: 25px;
+  font-family: Ubuntu-Bold;
+  font-size: 15px;
+  color: #fff;
+  line-height: 2;
+  text-transform: uppercase;
 }
 
 .login100-form-btn {
@@ -319,7 +320,7 @@ iframe {
   font-family: Ubuntu-Bold;
   font-size: 15px;
   color: #fff;
-  line-height: 1.2;
+  line-height: 2;
   text-transform: uppercase;
 
   -webkit-transition: all 0.4s;
