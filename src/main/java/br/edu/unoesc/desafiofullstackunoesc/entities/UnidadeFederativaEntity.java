@@ -1,10 +1,10 @@
-package br.edu.unoesc.desafiofullstackunoesc.models;
+package br.edu.unoesc.desafiofullstackunoesc.entities;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "unidadefederativa")
-public class UnidadeFederativa {
+public class UnidadeFederativaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class UnidadeFederativa {
     @Column(nullable = false)
     private String nome;
     
-    public UnidadeFederativa(int codigo, String sigla, String nome) {
+    public UnidadeFederativaEntity(int codigo, String sigla, String nome) {
         this.codigo = codigo;
         this.sigla = sigla;
         this.nome = nome;

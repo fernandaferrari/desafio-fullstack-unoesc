@@ -1,13 +1,14 @@
-package br.edu.unoesc.desafiofullstackunoesc.models;
+package br.edu.unoesc.desafiofullstackunoesc.entities;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "auxilioemergencial")
-public class AuxilioEmergencial {
+public class AuxilioEmergencialEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class AuxilioEmergencial {
     
     @ManyToOne
     @JoinColumn(name = "municipio_id", referencedColumnName = "id", nullable = false)
-    private Municipio municipio;
+    private MunicipioEntity municipio;
 
 
     public long getCodigo() {
@@ -42,11 +43,11 @@ public class AuxilioEmergencial {
         this.dataConsulta = dataConsulta;
     }
 
-    public Municipio getMunicipio() {
+    public MunicipioEntity getMunicipio() {
         return municipio;
     }
 
-    public void setMunicipio(Municipio municipio) {
+    public void setMunicipio(MunicipioEntity municipio) {
         this.municipio = municipio;
     }
 

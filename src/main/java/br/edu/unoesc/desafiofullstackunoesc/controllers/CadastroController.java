@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.edu.unoesc.desafiofullstackunoesc.models.Usuario;
+import br.edu.unoesc.desafiofullstackunoesc.entities.UsuarioEntity;
 import br.edu.unoesc.desafiofullstackunoesc.service.UsuarioService;
 
 
@@ -25,7 +25,7 @@ public class CadastroController {
     @PostMapping("/cadastrar")
     public String salvarUser(Model model, String nome, String password) {
 
-        Usuario usuario = new Usuario();
+        UsuarioEntity usuario = new UsuarioEntity();
         usuario.setNome(nome);
         usuario.setPassword(password);
 

@@ -1,10 +1,10 @@
-package br.edu.unoesc.desafiofullstackunoesc.models;
+package br.edu.unoesc.desafiofullstackunoesc.entities;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

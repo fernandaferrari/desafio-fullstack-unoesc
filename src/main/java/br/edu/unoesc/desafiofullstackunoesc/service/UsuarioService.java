@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import br.edu.unoesc.desafiofullstackunoesc.models.Usuario;
+import br.edu.unoesc.desafiofullstackunoesc.entities.UsuarioEntity;
 import br.edu.unoesc.desafiofullstackunoesc.repositories.UsuarioRepository;
 
 @Component
@@ -17,7 +17,7 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository repository;
 
-    public Boolean salvar(Usuario usuario){
+    public Boolean salvar(UsuarioEntity usuario){
         try{
             usuario.setPassword(criptografarSenha(usuario.getPassword()));
 
@@ -45,10 +45,10 @@ public class UsuarioService {
     }
 
 
-    public Usuario checkAccount(Usuario usuario) {
+    public UsuarioEntity checkAccount(UsuarioEntity usuario) {
         usuario.setPassword(criptografarSenha(usuario.getPassword()));
 
-        Usuario user = this.repository.login(usuario.getNome(), usuario.getPassword());
+        UsuarioEntity user = this.repository.login(usuario.getNome(), usuario.getPassword());
 
         return user;
 

@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import br.edu.unoesc.desafiofullstackunoesc.models.Usuario;
+import br.edu.unoesc.desafiofullstackunoesc.entities.UsuarioEntity;
 
 @Repository
 @Component
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
 
     @Query(value = "select * from usuario where nome = :nome and password = :password", nativeQuery = true)
-    public Usuario login(String nome, String password); 
+    public UsuarioEntity login(String nome, String password); 
 
 }

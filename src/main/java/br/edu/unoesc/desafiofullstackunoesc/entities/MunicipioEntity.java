@@ -1,10 +1,10 @@
-package br.edu.unoesc.desafiofullstackunoesc.models;
+package br.edu.unoesc.desafiofullstackunoesc.entities;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "municipio")
-public class Municipio {
+public class MunicipioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +22,12 @@ public class Municipio {
 
     @ManyToOne
     @JoinColumn(name = "unidadefederativa_id", referencedColumnName = "id")
-    private UnidadeFederativa unidadeFederativa;
+    private UnidadeFederativaEntity unidadeFederativa;
     
-    public Municipio(
+    public MunicipioEntity(
             long codigo, 
             long codigoIBGE, String nomeIBGE, String codigoRegiao, String pais,
-            UnidadeFederativa unidadeFederativa) {
+            UnidadeFederativaEntity unidadeFederativa) {
         this.codigo = codigo;
         this.codigoIBGE = codigoIBGE;
         this.nomeIBGE = nomeIBGE;
@@ -76,11 +76,11 @@ public class Municipio {
         this.pais = pais;
     }
 
-    public UnidadeFederativa getUnidadeFederativa() {
+    public UnidadeFederativaEntity getUnidadeFederativa() {
         return unidadeFederativa;
     }
 
-    public void setUnidadeFederativa(UnidadeFederativa unidadeFederativa) {
+    public void setUnidadeFederativa(UnidadeFederativaEntity unidadeFederativa) {
         this.unidadeFederativa = unidadeFederativa;
     }
 

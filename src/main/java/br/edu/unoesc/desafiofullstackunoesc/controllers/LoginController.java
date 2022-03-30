@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.edu.unoesc.desafiofullstackunoesc.models.Usuario;
+import br.edu.unoesc.desafiofullstackunoesc.entities.UsuarioEntity;
 import br.edu.unoesc.desafiofullstackunoesc.service.CookieService;
 import br.edu.unoesc.desafiofullstackunoesc.service.UsuarioService;
 
@@ -26,9 +26,9 @@ public class LoginController {
 	}
 
 	@PostMapping("/logar")
-	public String logar(Model model, Usuario usuarioParam, HttpServletResponse response) {
+	public String logar(Model model, UsuarioEntity usuarioParam, HttpServletResponse response) {
 
-		Usuario result = userService.checkAccount(usuarioParam);
+		UsuarioEntity result = userService.checkAccount(usuarioParam);
 
 		if (result != null) {
 			CookieService.setCookie(response, "usuarioId", String.valueOf(result.getCodigo()), 3600);
