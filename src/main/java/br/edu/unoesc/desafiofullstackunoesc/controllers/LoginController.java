@@ -19,7 +19,7 @@ public class LoginController {
 	@Autowired
 	UsuarioService userService;
 
-	@GetMapping("/login")
+	@GetMapping("/")
 	public String index() {
 		
         return "login/index";
@@ -31,11 +31,17 @@ public class LoginController {
 		Usuario result = userService.checkAccount(usuarioParam);
 
 		if (result != null) {
-			CookieService.setCookie(response, "usuariosId", String.valueOf(result.getCodigo()), 5);
+			CookieService.setCookie(response, "usuarioId", String.valueOf(result.getCodigo()), 3600);
 			return "redirect:/home";
 		} 
 			
 		model.addAttribute("erro", "Usuário ou senha invalidos");
 		return "login/index";
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpServletResponse response) {
+		CookieService.setCookie(response, "usuarioId", "", 0);
+		return "redirect:/";
 	}
 }

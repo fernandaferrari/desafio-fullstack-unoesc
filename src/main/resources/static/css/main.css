@@ -287,6 +287,21 @@ iframe {
   justify-content: center;
 }
 
+.container-logout-form-btn {
+  width: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  transform: translate(800%, 0%);
+  left: 100%;
+  justify-content: center;
+}
+
+#esquerda {
+  position: absolute;
+  left: 80%;
+  transform: translate(-50%, -50%);
+}
+
 .login100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
