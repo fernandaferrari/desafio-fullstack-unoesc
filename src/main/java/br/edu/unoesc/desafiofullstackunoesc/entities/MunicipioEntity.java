@@ -84,5 +84,10 @@ public class MunicipioEntity {
         this.unidadeFederativa = unidadeFederativa;
     }
 
+    @Override
+    public String toString() {
+        return "MunicipioEntity [nomeIBGE=" + nomeIBGE + "]";
+    }
+
     
 }
