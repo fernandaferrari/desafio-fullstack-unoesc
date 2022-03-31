@@ -25,7 +25,7 @@ public class HomeController {
     @PostMapping("/buscar")
     public ResponseEntity<AuxilioEmergencialEntity> obterAuxilio(String codigoIbge, int mesAno) throws IOException {
         AuxilioEmergencialEntity auxilio = new AuxilioEmergencialEntity();
-        this.service.obterAuxilioPorMunicipio(codigoIbge, mesAno, 1);
+        this.service.obterAuxilioPorMunicipio(codigoIbge, mesAno);
 
         return ResponseEntity.ok(auxilio);
     }

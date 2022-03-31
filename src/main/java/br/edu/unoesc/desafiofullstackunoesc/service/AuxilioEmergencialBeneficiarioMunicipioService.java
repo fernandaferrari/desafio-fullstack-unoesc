@@ -18,9 +18,9 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
     //@Autowired
     //private WebClient webClient;
 
-    public void obterAuxilioPorMunicipio(String codigoIbge, int mesAno, int pagina) throws IOException{
+    public void obterAuxilioPorMunicipio(String codigoIbge, int mesAno) throws IOException{
 
-        URL url = new URL("https://api.portaldatransparencia.gov.br/api-de-dados/auxilio-emergencial-beneficiario-por-municipio?codigoIbge=4209003&mesAno=202011&pagina=1");
+        URL url = new URL("https://api.portaldatransparencia.gov.br/api-de-dados/auxilio-emergencial-beneficiario-por-municipio?codigoIbge="+codigoIbge+"&mesAno=" + mesAno+"&pagina=1");
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
