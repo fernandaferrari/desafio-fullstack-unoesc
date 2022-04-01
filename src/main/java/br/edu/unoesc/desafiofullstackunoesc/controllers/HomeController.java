@@ -3,6 +3,7 @@ package br.edu.unoesc.desafiofullstackunoesc.controllers;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class HomeController {
     }
 
     @PostMapping("/buscar")
-    public ResponseEntity<AuxilioEmergencialEntity> obterAuxilio(String codigoIbge, int mesAno) throws IOException {
+    public ResponseEntity<AuxilioEmergencialEntity> obterAuxilio(String codigoIbge, int mesAno) throws IOException, JSONException {
         AuxilioEmergencialEntity auxilio = new AuxilioEmergencialEntity();
         this.service.obterAuxilioPorMunicipio(codigoIbge, mesAno);
 
