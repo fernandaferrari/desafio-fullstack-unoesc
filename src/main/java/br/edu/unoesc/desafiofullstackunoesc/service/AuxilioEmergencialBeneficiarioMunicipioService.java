@@ -1,7 +1,5 @@
 package br.edu.unoesc.desafiofullstackunoesc.service;
 
-import org.apache.commons.beanutils.converters.BigDecimalConverter;
-import org.hibernate.validator.internal.engine.groups.ValidationOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
@@ -10,6 +8,7 @@ import br.edu.unoesc.desafiofullstackunoesc.entities.AuxilioEmergencialEntity;
 import br.edu.unoesc.desafiofullstackunoesc.entities.MunicipioEntity;
 import br.edu.unoesc.desafiofullstackunoesc.entities.UnidadeFederativaEntity;
 import br.edu.unoesc.desafiofullstackunoesc.helpers.ChaveApiDados;
+import br.edu.unoesc.desafiofullstackunoesc.helpers.ConvertData;
 import br.edu.unoesc.desafiofullstackunoesc.helpers.ConvertJsonToString;
 import br.edu.unoesc.desafiofullstackunoesc.models.AuxilioEmergencialModel;
 import br.edu.unoesc.desafiofullstackunoesc.models.MunicipioModel;
@@ -28,6 +27,8 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,8 +48,6 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
     private MunicipioRepository municipioRepo;
     @Autowired
     private AuxilioEmergencialRepository auxilioRepo;
-    @Autowired
-    private ArquivoCsvService arquivoCsv;
 
 
 
@@ -61,7 +60,10 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
     float valorTotal7 = 0;
     float valorTotal8 = 0;
 
-    public void obterAuxilioPorMunicipio(String codigoIbge, int mesAno) throws IOException, JSONException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException{
+    public boolean obterAuxilioPorMunicipio(String codigoIbge, String mesAno) throws IOException, JSONException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, ParseException{
+
+        int anoMes = ConvertData.converter(mesAno);
+
 
         Type collectionType = new TypeToken<List<AuxilioEmergencialModel>>() {
         }.getType();
@@ -70,7 +72,7 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
 
         int pagina = 1;
         // while(pagina != 100){
-            URL url = new URL("https://api.portaldatransparencia.gov.br/api-de-dados/auxilio-emergencial-beneficiario-por-municipio?codigoIbge="+codigoIbge+"&mesAno=" + mesAno+"&pagina="+ 1);
+            URL url = new URL("https://api.portaldatransparencia.gov.br/api-de-dados/auxilio-emergencial-beneficiario-por-municipio?codigoIbge="+codigoIbge+"&mesAno=" + anoMes+"&pagina="+ pagina);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -126,67 +128,69 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
                 saveMunicipio(listAux.get(1).getMunicipio());
                 
 
+                int aux1 = 0;
+                int aux2 = 0;
+                int aux3 = 0;
+                int aux4 = 0;
+                int aux5 = 0;
+                int aux6 = 0;
+                int aux7 = 0;
+                int aux8 = 0;
 
-                pagina++;
+                List<AuxilioEmergencialEntity> listAuxilio = new ArrayList<AuxilioEmergencialEntity>();
+
+                for (int i = 0; i < listAux.size(); i++) {
+                    if (valorTotal1 != 0 && aux1 == 0) {
+                        listAux.get(i).setNumeroParcela("1ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal1, mesAno);
+                        listAuxilio.add(aux);
+                        aux1 = 1;
+                    } else if (valorTotal2 != 0 && aux2 == 0) {
+                        listAux.get(i).setNumeroParcela("2ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal2, mesAno);
+                        listAuxilio.add(aux);
+                        aux2 = 1;
+                    } else if (valorTotal3 != 0 && aux3 == 0) {
+                        listAux.get(i).setNumeroParcela("3ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal3, mesAno);
+                        listAuxilio.add(aux);
+                        aux3 = 1;
+                    } else if (valorTotal4 != 0 && aux4 == 0) {
+                        listAux.get(i).setNumeroParcela("4ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal4, mesAno);
+                        listAuxilio.add(aux);
+                        aux4 = 1;
+                    } else if (valorTotal5 != 0 && aux5 == 0) {
+                        listAux.get(i).setNumeroParcela("5ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal5, mesAno);
+                        listAuxilio.add(aux);
+                        aux5 = 1;
+                    } else if (valorTotal6 != 0 && aux6 == 0) {
+                        listAux.get(i).setNumeroParcela("6ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal6, mesAno);
+                        listAuxilio.add(aux);
+                        aux6 = 1;
+                    } else if (valorTotal7 != 0 && aux7 == 0) {
+                        listAux.get(i).setNumeroParcela("7ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal7, mesAno);
+                        listAuxilio.add(aux);
+                        aux7 = 1;
+                    } else if (valorTotal8 != 0 && aux8 == 0) {
+                        listAux.get(i).setNumeroParcela("8ª");
+                        AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal8, mesAno);
+                        listAuxilio.add(aux);
+                        aux8 = 1;
+                    }
+                }
+                
+
+                ArquivoCsvService.criarCsv(listAuxilio);
+                return true;
+            }else{
+                return false;
             }
             
-            // }
-            int aux1 = 0;
-            int aux2 = 0;
-            int aux3 = 0;
-            int aux4 = 0;
-            int aux5 = 0;
-            int aux6 = 0;
-            int aux7 = 0;
-            int aux8 = 0;
-
-            List<AuxilioEmergencialEntity> listAuxilio = new ArrayList<AuxilioEmergencialEntity>();
-
-            for (int i = 0; i < listAux.size(); i++) {
-                if (valorTotal1 != 0 && aux1 == 0) {
-                    listAux.get(i).setNumeroParcela("1ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal1, mesAno);
-                    listAuxilio.add(aux);
-                    aux1 = 1;
-                } else if (valorTotal2 != 0 && aux2 == 0) {
-                    listAux.get(i).setNumeroParcela("2ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal2, mesAno);
-                    listAuxilio.add(aux);
-                    aux2 = 1;
-                } else if (valorTotal3 != 0 && aux3 == 0) {
-                    listAux.get(i).setNumeroParcela("3ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal3, mesAno);
-                    listAuxilio.add(aux);
-                    aux3 = 1;
-                } else if (valorTotal4 != 0 && aux4 == 0) {
-                    listAux.get(i).setNumeroParcela("4ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal4, mesAno);
-                    listAuxilio.add(aux);
-                    aux4 = 1;
-                } else if (valorTotal5 != 0 && aux5 == 0) {
-                    listAux.get(i).setNumeroParcela("5ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal5, mesAno);
-                    listAuxilio.add(aux);
-                    aux5 = 1;
-                } else if (valorTotal6 != 0 && aux6 == 0) {
-                    listAux.get(i).setNumeroParcela("6ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal6, mesAno);
-                    listAuxilio.add(aux);
-                    aux6 = 1;
-                } else if (valorTotal7 != 0 && aux7 == 0) {
-                    listAux.get(i).setNumeroParcela("7ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal7, mesAno);
-                    listAuxilio.add(aux);
-                    aux7 = 1;
-                } else if (valorTotal8 != 0 && aux8 == 0) {
-                    listAux.get(i).setNumeroParcela("8ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal8, mesAno);
-                    listAuxilio.add(aux);
-                    aux8 = 1;
-                }
-         };
-
-         ArquivoCsvService.criarCsv(listAuxilio);
+            
     }
 
     public void saveUf(UfModel uf){
@@ -219,12 +223,19 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
 
     }
 
-    public AuxilioEmergencialEntity saveAuxilio(AuxilioEmergencialModel auxilio, float valor, int mesAno) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, IOException{
+    public AuxilioEmergencialEntity saveAuxilio(AuxilioEmergencialModel auxilio, float valor, String mesAno) throws CsvDataTypeMismatchException, CsvRequiredFieldEmptyException, IOException, ParseException{
         AuxilioEmergencialEntity newEntity = new AuxilioEmergencialEntity();
 
         newEntity.setNumeroParcela(auxilio.getNumeroParcela());
         newEntity.setValorTotal(new BigDecimal(Float.toString(valor)));
-        newEntity.setDataConsulta(new Date());
+        
+
+
+        String sDate1 = ConvertData.format(mesAno);
+        SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy");
+        Date date1 = formatter1.parse(sDate1);
+
+        newEntity.setDataConsulta(date1);
         MunicipioEntity muni =  municipioRepo.verifica(auxilio.getMunicipio().getCodigoIBGE());
         newEntity.setMunicipio(muni);
 

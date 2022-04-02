@@ -1,8 +1,6 @@
 package br.edu.unoesc.desafiofullstackunoesc.service;
 
 import com.opencsv.CSVWriter;
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
@@ -23,7 +21,7 @@ public class ArquivoCsvService {
     public static void criarCsv(List<AuxilioEmergencialEntity> auxilio)
             throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
 
-        String[] cabecalho = { "Nome Cidade", "Parcela nº", "Valor Total" };
+        String[] cabecalho = { "Nome Cidade", "Parcela nº", "Valor Total", "Data Consulta"};
         Writer writer = Files.newBufferedWriter(Paths.get("/home/fernanda/Downloads/auxilio.csv"));
         CSVWriter csvWriter = new CSVWriter(writer);
         csvWriter.writeNext(cabecalho);
@@ -31,7 +29,7 @@ public class ArquivoCsvService {
         for(int i=0; i< auxilio.size(); i++){
             List<String[]> linhas = new ArrayList<>();
             linhas.add(new String[] { auxilio.get(i).getMunicipio().getNomeIBGE(), auxilio.get(i).getNumeroParcela(),
-                    auxilio.get(i).getValorTotal().toString()});            
+                    auxilio.get(i).getValorTotal().toString(), auxilio.get(1).getDataConsulta().toString()});            
             csvWriter.writeAll(linhas);
         }        
 
