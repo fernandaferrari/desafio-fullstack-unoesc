@@ -65,7 +65,7 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
 
         Type collectionType = new TypeToken<List<AuxilioEmergencialModel>>() {
         }.getType();
-        List<AuxilioEmergencialModel> lcs = new Gson()
+        List<AuxilioEmergencialModel> listAux = new Gson()
                 .fromJson("", collectionType);
 
         int pagina = 1;
@@ -86,44 +86,44 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
             String jsonEmString = ConvertJsonToString.converte(buffer);
 
             if(jsonEmString != ""){
-                lcs = new Gson()
+                listAux = new Gson()
                         .fromJson(jsonEmString, collectionType);
 
-                System.out.println(lcs);
+                System.out.println(listAux);
 
-                for(int i = 0; i < lcs.size(); i++){                    
-                    switch (lcs.get(i).getNumeroParcela()) {
+                for(int i = 0; i < listAux.size(); i++){                    
+                    switch (listAux.get(i).getNumeroParcela()) {
                         case "1ª":
-                            valorTotal1 += lcs.get(i).getValor();
+                            valorTotal1 += listAux.get(i).getValor();
                             System.out.println(valorTotal1);
                             break;
                         case "2ª":
-                            valorTotal2 += lcs.get(i).getValor();
+                            valorTotal2 += listAux.get(i).getValor();
                             break;
                         case "3ª":
-                            valorTotal3 += lcs.get(i).getValor();
+                            valorTotal3 += listAux.get(i).getValor();
                             break;
                         case "4ª":
-                            valorTotal4 += lcs.get(i).getValor();
+                            valorTotal4 += listAux.get(i).getValor();
                             break;
                         case "5ª":
-                            valorTotal5 += lcs.get(i).getValor();
+                            valorTotal5 += listAux.get(i).getValor();
                             break;
                         case "6ª":
-                            valorTotal6 += lcs.get(i).getValor();
+                            valorTotal6 += listAux.get(i).getValor();
                             break;
                         case "7ª":
-                            valorTotal7 += lcs.get(i).getValor();
+                            valorTotal7 += listAux.get(i).getValor();
                             break;
                         case "8ª":
-                            valorTotal8 += lcs.get(i).getValor();
+                            valorTotal8 += listAux.get(i).getValor();
                             break;
                     }
                 }
                 connection.disconnect();
 
-                saveUf(lcs.get(1).getMunicipio().getUf());
-                saveMunicipio(lcs.get(1).getMunicipio());
+                saveUf(listAux.get(1).getMunicipio().getUf());
+                saveMunicipio(listAux.get(1).getMunicipio());
                 
 
 
@@ -142,45 +142,45 @@ public class AuxilioEmergencialBeneficiarioMunicipioService {
 
             List<AuxilioEmergencialEntity> listAuxilio = new ArrayList<AuxilioEmergencialEntity>();
 
-            for (int i = 0; i < lcs.size(); i++) {
+            for (int i = 0; i < listAux.size(); i++) {
                 if (valorTotal1 != 0 && aux1 == 0) {
-                    lcs.get(i).setNumeroParcela("1ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal1, mesAno);
+                    listAux.get(i).setNumeroParcela("1ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal1, mesAno);
                     listAuxilio.add(aux);
                     aux1 = 1;
                 } else if (valorTotal2 != 0 && aux2 == 0) {
-                    lcs.get(i).setNumeroParcela("2ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal2, mesAno);
+                    listAux.get(i).setNumeroParcela("2ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal2, mesAno);
                     listAuxilio.add(aux);
                     aux2 = 1;
                 } else if (valorTotal3 != 0 && aux3 == 0) {
-                    lcs.get(i).setNumeroParcela("3ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal3, mesAno);
+                    listAux.get(i).setNumeroParcela("3ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal3, mesAno);
                     listAuxilio.add(aux);
                     aux3 = 1;
                 } else if (valorTotal4 != 0 && aux4 == 0) {
-                    lcs.get(i).setNumeroParcela("4ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal4, mesAno);
+                    listAux.get(i).setNumeroParcela("4ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal4, mesAno);
                     listAuxilio.add(aux);
                     aux4 = 1;
                 } else if (valorTotal5 != 0 && aux5 == 0) {
-                    lcs.get(i).setNumeroParcela("5ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal5, mesAno);
+                    listAux.get(i).setNumeroParcela("5ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal5, mesAno);
                     listAuxilio.add(aux);
                     aux5 = 1;
                 } else if (valorTotal6 != 0 && aux6 == 0) {
-                    lcs.get(i).setNumeroParcela("6ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal6, mesAno);
+                    listAux.get(i).setNumeroParcela("6ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal6, mesAno);
                     listAuxilio.add(aux);
                     aux6 = 1;
                 } else if (valorTotal7 != 0 && aux7 == 0) {
-                    lcs.get(i).setNumeroParcela("7ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal7, mesAno);
+                    listAux.get(i).setNumeroParcela("7ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal7, mesAno);
                     listAuxilio.add(aux);
                     aux7 = 1;
                 } else if (valorTotal8 != 0 && aux8 == 0) {
-                    lcs.get(i).setNumeroParcela("8ª");
-                    AuxilioEmergencialEntity aux = saveAuxilio(lcs.get(i), valorTotal8, mesAno);
+                    listAux.get(i).setNumeroParcela("8ª");
+                    AuxilioEmergencialEntity aux = saveAuxilio(listAux.get(i), valorTotal8, mesAno);
                     listAuxilio.add(aux);
                     aux8 = 1;
                 }

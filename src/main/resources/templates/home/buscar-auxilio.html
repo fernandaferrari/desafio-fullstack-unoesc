@@ -53,6 +53,10 @@
                         <span class="focus-input100"></span>
                     </div>
 
+                    <div th:if="${erro != null}" th:text="${erro}" class="alert alert-primary" role="alert"></div>
+
+                    <div th:if="${success != null}" th:text="${success}" class="alert alert-primary" role="alert"></div>
+
                     <div class="container-login100-form-btn p-t-20 p-b-40" >
                         <button class="login100-form-btn">
                             Buscar
