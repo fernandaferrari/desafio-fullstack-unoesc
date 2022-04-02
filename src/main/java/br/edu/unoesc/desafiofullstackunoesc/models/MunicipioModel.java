@@ -6,7 +6,7 @@ public class MunicipioModel {
     private String codigoRegiao;
     private String nomeRegiao;
     private String pais;
-    UfModel UfObject;
+    UfModel uf;
 
     // Getter Methods
 
@@ -31,7 +31,7 @@ public class MunicipioModel {
     }
 
     public UfModel getUf() {
-        return UfObject;
+        return uf;
     }
 
     // Setter Methods
@@ -56,7 +56,7 @@ public class MunicipioModel {
         this.pais = pais;
     }
 
-    public void setUf(UfModel ufObject) {
-        this.UfObject = ufObject;
+    public void setUf(UfModel uf) {
+        this.uf = uf;
     }
 }

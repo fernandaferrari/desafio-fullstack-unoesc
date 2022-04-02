@@ -3,9 +3,9 @@ package br.edu.unoesc.desafiofullstackunoesc.models;
 public class AuxilioEmergencialModel {
  private float id;
  private String mesDisponibilizacao;
- BeneficiarioModel BeneficiarioObject;
+ BeneficiarioModel beneficiario;
  ResponsavelAuxilioEmergencialModel ResponsavelAuxilioEmergencialObject;
- MunicipioModel MunicipioObject;
+ MunicipioModel municipio;
  private String situacaoAuxilioEmergencial;
  private String enquadramentoAuxilioEmergencial;
  private float valor;
@@ -23,7 +23,7 @@ public class AuxilioEmergencialModel {
  }
 
  public BeneficiarioModel getBeneficiario() {
-  return BeneficiarioObject;
+  return beneficiario;
  }
 
  public ResponsavelAuxilioEmergencialModel getResponsavelAuxilioEmergencial() {
@@ -31,7 +31,7 @@ public class AuxilioEmergencialModel {
  }
 
  public MunicipioModel getMunicipio() {
-  return MunicipioObject;
+  return municipio;
  }
 
  public String getSituacaoAuxilioEmergencial() {
@@ -60,16 +60,16 @@ public class AuxilioEmergencialModel {
   this.mesDisponibilizacao = mesDisponibilizacao;
  }
 
- public void setBeneficiario(BeneficiarioModel beneficiarioObject) {
-  this.BeneficiarioObject = beneficiarioObject;
+ public void setBeneficiario(BeneficiarioModel beneficiario) {
+  this.beneficiario = beneficiario;
  }
 
  public void setResponsavelAuxilioEmergencial(ResponsavelAuxilioEmergencialModel responsavelAuxilioEmergencialObject) {
   this.ResponsavelAuxilioEmergencialObject = responsavelAuxilioEmergencialObject;
  }
 
- public void setMunicipio(MunicipioModel municipioObject) {
-  this.MunicipioObject = municipioObject;
+ public void setMunicipio(MunicipioModel municipio) {
+  this.municipio = municipio;
  }
 
  public void setSituacaoAuxilioEmergencial(String situacaoAuxilioEmergencial) {

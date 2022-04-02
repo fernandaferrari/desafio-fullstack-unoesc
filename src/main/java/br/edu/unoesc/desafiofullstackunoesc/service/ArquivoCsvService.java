@@ -1,5 +1,6 @@
 package br.edu.unoesc.desafiofullstackunoesc.service;
 
+import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
@@ -19,33 +20,23 @@ import java.util.List;
 @Service
 public class ArquivoCsvService {
 
-    public static void criarCsv(AuxilioEmergencialEntity auxilio)
+    public static void criarCsv(List<AuxilioEmergencialEntity> auxilio)
             throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
 
-        List<AuxilioEmergencialEntity> auxilios = new ArrayList<>();
-        auxilios.add(auxilio);
+        String[] cabecalho = { "Nome Cidade", "Parcela nº", "Valor Total" };
+        Writer writer = Files.newBufferedWriter(Paths.get("/home/fernanda/Downloads/auxilio.csv"));
+        CSVWriter csvWriter = new CSVWriter(writer);
+        csvWriter.writeNext(cabecalho);
 
-        Writer writer = Files.newBufferedWriter(Paths.get("auxilios.csv"));
-        StatefulBeanToCsv<AuxilioEmergencialEntity> beanToCsv = new StatefulBeanToCsvBuilder(writer).build();
+        for(int i=0; i< auxilio.size(); i++){
+            List<String[]> linhas = new ArrayList<>();
+            linhas.add(new String[] { auxilio.get(i).getMunicipio().getNomeIBGE(), auxilio.get(i).getNumeroParcela(),
+                    auxilio.get(i).getValorTotal().toString()});            
+            csvWriter.writeAll(linhas);
+        }        
 
-        beanToCsv.write(auxilios);
-
-        writer.flush();
+        csvWriter.flush();
         writer.close();
-
-        // String[] cabecalho = { "Nome Cidade", "Parcela nº", "Valor Total" };
-
-        // List<String[]> linhas = new ArrayList<>();
-        // linhas.add(new String[] { auxilio.getMunicipio().toString(), auxilio.getNumeroParcela(), auxilio.getValorTotal().toString() });
-
-        // Writer writer = Files.newBufferedWriter(Paths.get("pessoas.csv"));
-        // CSVWriter csvWriter = new CSVWriter(writer);
-
-        // csvWriter.writeNext(cabecalho);
-        // csvWriter.writeAll(linhas);
-
-        // csvWriter.flush();
-        // writer.close();
 
     }
 

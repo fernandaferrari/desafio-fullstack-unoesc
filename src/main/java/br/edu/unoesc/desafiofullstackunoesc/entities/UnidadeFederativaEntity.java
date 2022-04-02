@@ -11,16 +11,10 @@ public class UnidadeFederativaEntity {
     @Column(name = "id")
     private long codigo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String sigla;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
-    
-    public UnidadeFederativaEntity(int codigo, String sigla, String nome) {
-        this.codigo = codigo;
-        this.sigla = sigla;
-        this.nome = nome;
-    }
 
     public long getCodigo() {
         return codigo;

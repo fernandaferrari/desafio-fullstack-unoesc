@@ -11,7 +11,7 @@ public class MunicipioEntity {
     @Column(name = "id")
     private long codigo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private long codigoIBGE;
     @Column(length = 100, nullable = false)
     private String nomeIBGE;
@@ -23,18 +23,6 @@ public class MunicipioEntity {
     @ManyToOne
     @JoinColumn(name = "unidadefederativa_id", referencedColumnName = "id")
     private UnidadeFederativaEntity unidadeFederativa;
-    
-    public MunicipioEntity(
-            long codigo, 
-            long codigoIBGE, String nomeIBGE, String codigoRegiao, String pais,
-            UnidadeFederativaEntity unidadeFederativa) {
-        this.codigo = codigo;
-        this.codigoIBGE = codigoIBGE;
-        this.nomeIBGE = nomeIBGE;
-        this.codigoRegiao = codigoRegiao;
-        this.pais = pais;
-        this.unidadeFederativa = unidadeFederativa;
-    }
 
     public long getCodigo() {
         return codigo;
