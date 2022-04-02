@@ -13,6 +13,7 @@ public class LoginInterceptorConfig  extends WebMvcConfigurerAdapter{
                 "/",
             "/login",
             "/cadastro",
+            "/cadastrar",
             "/images/**",
             "/logar",
             "/vendor/**",

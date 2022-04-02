@@ -34,4 +34,4 @@ build/
 
 ##Properties JAVA
 src/main/resources/application.properties
-src/main/java/br/edu/unoesc/desafiofullstackunoesc/helpers/**
+src/main/java/br/edu/unoesc/desafiofullstackunoesc/helpers/ChaveApiDados.java
